@@ -1,3 +1,4 @@
+
 var topics = [
   "Code Geass",
   "No Game No Life",
@@ -6,8 +7,9 @@ var topics = [
   "My Hero Academia",
   "Attack on Titan"
 ];
+
 $("button").on("click", function() {
-  var topic = $(topics).attr("data-anime");
+  var topic = $(this).attr("data-anime");
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     topic +
@@ -48,7 +50,7 @@ function renderButtons() {
     a.addclass("anime");
     a.attr("data-anime", topics[i]);
     a.text(topics[i]);
-    $("buttons-view").append(a);
+    $("#buttons-view").append(a);
   }
 }
 

@@ -11,12 +11,41 @@
     <div id="buttons-view"></div>
     <form id="new-button">
       <label for="anime-input">Add An Animal</label>
-      <input type="text" id="" /><br />
+      <input type="text" id="anime-input" /><br />
       <input id="add-anime" type="submit" value="Submit" />
     </form>
     <br />
     <div id="gifs-appear-here"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="./assets/javascript/giphy.js"></script>
+  <script type="text/javascript">
+    //src="./assets/javascript/giphy.js"
+    var topics = [
+      "Code Geass",
+      "No Game No Life",
+      "Gurren Lagann",
+      "School Rumble",
+      "My Hero Academia",
+      "Attack on Titan"
+    ];
+    function renderButtons() {
+      for (var i = 0; i < topics.length; i++) {
+        var a = $("<button>");
+        
+        a.attr("data-anime", topics[i]);
+        a.text(topics[i]);
+        $("#buttons-view").append(a);
+      }
+    }
+    $("#add-anime").on("click", function(event) {
+      event.preventDefault();
+      var anime = $("#anime-input")
+        .val()
+        .trim();
+
+      topics.push(anime);
+      console.log(topics);
+      renderButtons();
+    });
+  </script>
 </html>
