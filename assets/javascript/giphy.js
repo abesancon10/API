@@ -1,17 +1,26 @@
+var topics = [
+  "Code Geass",
+  "No Game No Life",
+  "Gurren Lagann",
+  "School Rumble",
+  "My Hero Academia",
+  "Attack on Titan"
+];
 $("button").on("click", function() {
-  var animal = $(this).attr("data-animal");
+  var topic = $(topics).attr("data-anime");
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
-    animal +
+    topic +
     "&api_key=8jb7rE8JNIYpKtgXawpdsV8v4iqNrv84";
+
   function makeImage(obj) {
     //build the shell of the function see below
     return `
-  <div>
-    <p>Rating: ${obj.rating}</p>
-    <img src="${obj.images.fixed_height.url}" />
-  </div>
-  `;
+    <div>
+      <p>Rating: ${obj.rating}</p>
+      <img src="${obj.images.fixed_height.url}" />
+    </div>
+    `;
     //function makeImage(obj){
     // return `
     // <div>
@@ -31,3 +40,26 @@ $("button").on("click", function() {
     $("#gifs-appear-here").prepend(response.data.map(makeImage));
   });
 });
+
+function renderButtons() {
+
+  for (var i = 0; i < topics.length; i++) {
+    var a = $("<button>");
+    a.addclass("anime");
+    a.attr("data-anime", topics[i]);
+    a.text(topics[i]);
+    $("buttons-view").append(a);
+  }
+}
+
+$("#add-anime").on("click", function(event) {
+  event.preventDefault();
+  var anime = $("#anime-input")
+    .val()
+    .trim();
+
+  topics.push(anime);
+  console.log(topics);
+  renderButtons();
+});
+
