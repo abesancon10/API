@@ -26,23 +26,24 @@ $("#add-anime").on("click", function(event) {
   console.log(topics);
   renderButtons();
 });
+
 $("button").on("click", function() {
   var topic = $(this).attr("data-anime");
   console.log(this);
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     topic +
-    "&api_key=8jb7rE8JNIYpKtgXawpdsV8v4iqNrv84";
-
+    "&api_key=8jb7rE8JNIYpKtgXawpdsV8v4iqNrv84" +
+    "&limit=10";
   function makeImage(obj) {
     //build the shell of the function see below
     return `
 <div>
   <p>Rating: ${obj.rating}</p>
-  <img src="${obj.images.fixed_height.url}" />
+  <img src="${obj.images.fixed_height_still.url}" />
 </div> 
 `;
-//obj.images.fixed_height_still.url
+    //obj.images.fixed_height_still.url
     //function makeImage(obj){
     // return `
     // <div>
