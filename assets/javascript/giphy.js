@@ -1,15 +1,34 @@
-
 var topics = [
-  "Code Geass",
-  "No Game No Life",
-  "Gurren Lagann",
-  "School Rumble",
-  "My Hero Academia",
-  "Attack on Titan"
+  // "Code Geass",
+  // "No Game No Life",
+  // "Gurren Lagann",
+  // "School Rumble",
+  // "My Hero Academia",
+  // "Attack on Titan"
 ];
 
+function renderButtons() {
+  for (var i = 0; i < topics.length; i++) {
+    var a = $("<button>");
+
+    a.attr("data-anime", topics[i]);
+    a.text(topics[i]);
+    $("#buttons-view").append(a);
+  }
+}
+$("#add-anime").on("click", function(event) {
+  event.preventDefault();
+  var anime = $("#anime-input")
+    .val()
+    .trim();
+
+  topics.push(anime);
+  console.log(topics);
+  renderButtons();
+});
 $("button").on("click", function() {
   var topic = $(this).attr("data-anime");
+  console.log(this);
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     topic +
@@ -18,11 +37,12 @@ $("button").on("click", function() {
   function makeImage(obj) {
     //build the shell of the function see below
     return `
-    <div>
-      <p>Rating: ${obj.rating}</p>
-      <img src="${obj.images.fixed_height.url}" />
-    </div>
-    `;
+<div>
+  <p>Rating: ${obj.rating}</p>
+  <img src="${obj.images.fixed_height.url}" />
+</div> 
+`;
+//obj.images.fixed_height_still.url
     //function makeImage(obj){
     // return `
     // <div>
@@ -42,26 +62,3 @@ $("button").on("click", function() {
     $("#gifs-appear-here").prepend(response.data.map(makeImage));
   });
 });
-
-function renderButtons() {
-
-  for (var i = 0; i < topics.length; i++) {
-    var a = $("<button>");
-    a.addclass("anime");
-    a.attr("data-anime", topics[i]);
-    a.text(topics[i]);
-    $("#buttons-view").append(a);
-  }
-}
-
-$("#add-anime").on("click", function(event) {
-  event.preventDefault();
-  var anime = $("#anime-input")
-    .val()
-    .trim();
-
-  topics.push(anime);
-  console.log(topics);
-  renderButtons();
-});
-

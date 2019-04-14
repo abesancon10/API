@@ -4,13 +4,20 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="./assets/css/reset.css" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Animal Buttons</title>
+    <title>Anime Gifs</title>
   </head>
 
   <body>
+    <button data-anime="Code Geass">Code Geass</button>
+    <button data-anime="No Game No Life">No Game No Life</button>
+    <button data-anime="Gurren Lagann">Gurren Lagann</button>
+    <button data-anime="One Punch Man">One Punch Man</button>
+    <button data-anime="My Hero Academia">My Hero Academia</button>
+    <button data-anime="Attack on Titan">Attack on Titan</button>
     <div id="buttons-view"></div>
+    <br />
     <form id="new-button">
-      <label for="anime-input">Add An Animal</label>
+      <label for="anime-input">Add An Anime</label>
       <input type="text" id="anime-input" /><br />
       <input id="add-anime" type="submit" value="Submit" />
     </form>
@@ -18,34 +25,5 @@
     <div id="gifs-appear-here"></div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    //src="./assets/javascript/giphy.js"
-    var topics = [
-      "Code Geass",
-      "No Game No Life",
-      "Gurren Lagann",
-      "School Rumble",
-      "My Hero Academia",
-      "Attack on Titan"
-    ];
-    function renderButtons() {
-      for (var i = 0; i < topics.length; i++) {
-        var a = $("<button>");
-        
-        a.attr("data-anime", topics[i]);
-        a.text(topics[i]);
-        $("#buttons-view").append(a);
-      }
-    }
-    $("#add-anime").on("click", function(event) {
-      event.preventDefault();
-      var anime = $("#anime-input")
-        .val()
-        .trim();
-
-      topics.push(anime);
-      console.log(topics);
-      renderButtons();
-    });
-  </script>
+  <script src="./assets/javascript/giphy.js"></script>
 </html>
